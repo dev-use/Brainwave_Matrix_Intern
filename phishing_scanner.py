@@ -1,9 +1,9 @@
-#Prendre une URL en Entrée
+#Take a URL as Input
 
-url = input("Entrez l'URL à analyser : ")
+url = input("Enter the URL to analyze : ")
  
 
-#Ensuite, utilisez requests pour récupérer le contenu de la page
+#Then use requests to retrieve the contents of the page
 
 import requests
 
@@ -16,10 +16,10 @@ def get_page_content(url):
         print(f"Erreur lors de la récupération de l'URL : {e}")
         return None
 
-# Exemple d'utilisation
+# Example of use
 html_content = get_page_content(url)
 
-#utilisez BeautifulSoup pour analyser le contenu HTML et rechercher des indicateurs de phishing 
+#use BeautifulSoup to analyze HTML content for phishing indicators
 
 from bs4 import BeautifulSoup
 
@@ -28,20 +28,20 @@ def analyze_content(html):
         return "Aucun contenu à analyser."
 
     soup = BeautifulSoup(html, 'lxml')
-    forms = soup.find_all('form')  # Recherche tous les formulaires sur la page
+    forms = soup.find_all('form')  # Search all forms on the page
 
-    # Exemple d'indicateur de phishing : présence de formulaires suspects
+   # Example of a phishing indicator: presence of suspicious forms
     if forms:
         print(f"{len(forms)} formulaire(s) trouvé(s) sur la page.")
         for form in forms:
-            print(form)  # Affiche le formulaire trouvé
+            print(form)  # Displays the found form
     else:
         print("Aucun formulaire trouvé.")
 
-# Exemple d'utilisation
+# Example of use
 analyze_content(html_content)
 
-# créer une interface graphique, vous pouvez utiliser Tkinter
+# create a GUI, you can use Tkinter
 import tkinter as tk
 from tkinter import messagebox
 
@@ -65,19 +65,18 @@ button.pack()
 app.mainloop()
 
 
-#Liste d'URLs Connues pour Tester Votre Scanner
+#List of Known URLs to Test Your Scanner
 test_urls = [
-    "http://example.com",  # URL sûre
-    "http://malicious-link.com",  # URL malveillante (exemple fictif)
-"http://login-bank.com",
-    "http://192.168.1.1",
-    "http://secure-login.example.com",
-    "http://update-password.com",
-    "http://go0gle.com"
-,"http://google.com"
+    "http://example.com",  #Safe URL
+    "http://malicious-link.com",  # Malicious URL (fictitious example)
+"http://login-bank.com", 
+    "http://secure-login.example.com", # Malicious URL (fictitious example)
+    "http://update-password.com", # Malicious URL (fictitious example)
+    "http://go0gle.com" #Safe URL
+,"http://facebook.com" #Safe URL
 ]
 
-# Pour chaque URL dans votre liste, exécutez votre scanner et vérifiez si les résultats sont conformes aux attentes :
+# For each URL in your list, run your scanner and check if the results are as expected:
 
 
 for test_url in test_urls:
